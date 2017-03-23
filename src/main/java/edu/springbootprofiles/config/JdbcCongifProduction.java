@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:application.yml")
+@PropertySource("classpath:application-prod.yml")
 @Profile("production")
 public class JdbcCongifProduction {
 

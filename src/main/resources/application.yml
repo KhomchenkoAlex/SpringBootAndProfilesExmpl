@@ -1,9 +1,4 @@
-spring:
-  profiles: "production"
-  datasource:
-  url: com.mysql.jdbc.Driver
-  driverclassname: com.mysql.jdbc.Driver
----
+
 spring:
   profiles:
     active: "develop"
@@ -12,8 +7,6 @@ spring:
     driverclassname: org.h2.Driver
     username: root
     password: root
----
-
 
 
 

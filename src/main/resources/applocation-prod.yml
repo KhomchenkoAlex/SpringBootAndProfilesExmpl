@@ -1,0 +1,5 @@
+spring:
+  profiles: "production"
+  datasource:
+  url: com.mysql.jdbc.Driver
+  driverclassname: com.mysql.jdbc.Driver
