@@ -2,7 +2,7 @@ package edu.springbootprofiles;
 
 import edu.springbootprofiles.model.Car;
 import edu.springbootprofiles.dao.CarDao;
-import edu.springbootprofiles.dao.InitDao;
+import edu.springbootprofiles.util.InitDao;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;

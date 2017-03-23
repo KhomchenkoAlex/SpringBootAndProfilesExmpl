@@ -1,5 +1,6 @@
 package edu.springbootprofiles.config;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,31 +11,29 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import edu.springbootprofiles.dao.CarDao;
-import edu.springbootprofiles.util.InitDao;
 
 import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:application.yml")
-@Profile("develop")
-public class JdbcConfig {
+@Profile("production")
+public class JdbcCongifProduction {
 
-   @Value("${driverclassname}")
+    @Value("${driverclassname}")
     private String driverClassName;
 
-   @Value("${url}")
+    @Value("${url}")
     private String url;
 
-    //@Value("${username}")
-    private String username = "root";
+    @Value("${username}")
+    private String username;
 
-    //@Value("${password}")
-    private String password = "root";
+    @Value("${password}")
+    private String password;
 
     @Bean
-    public DataSource devDataSource() {
+    public DataSource DataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
@@ -44,22 +43,15 @@ public class JdbcConfig {
     }
 
     @Bean
-    public JdbcTemplate devJdbcTemplate() {
+    public JdbcTemplate JdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(devDataSource());
+        jdbcTemplate.setDataSource(DataSource());
         return jdbcTemplate;
     }
-
     @Bean
-    public PlatformTransactionManager devTxManager() {
-        return new DataSourceTransactionManager(devDataSource());
+    public PlatformTransactionManager TxManager() {
+        return new DataSourceTransactionManager(DataSource());
     }
 
-    @Bean
-    public CarDao CarService(){
-        return new CarDao();
-    }
-
-    @Bean
-    public InitDao InitService(){ return new InitDao(); }
 }
+
